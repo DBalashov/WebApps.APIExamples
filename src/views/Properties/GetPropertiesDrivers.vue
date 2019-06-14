@@ -50,11 +50,11 @@ this.connector.GetDriverProperties([
 
 <script lang="ts">
     import {Component} from 'vue-property-decorator';
-    import {EnumBase} from "@/views/Enum/EnumBase";
     import {store} from "@/main";
-    import {IEnumDeviceItem, IGetPropertiesResult} from "@/components/ServiceConnector";
+    import {IGetPropertiesResult} from "@/components/ServiceConnector";
     import {GetPropertiesBase} from "@/views/Properties/GetPropertiesBase";
     import PropertyItems from "@/components/PropertyItems.vue";
+
     @Component({
         components: {PropertyItems}
     })

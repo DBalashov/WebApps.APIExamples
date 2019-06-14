@@ -16,5 +16,8 @@ export default new Router({
     {path: '/GetProperties/Devices', name: 'GetPropertiesDevices', component: () => import('./views/Properties/GetPropertiesDevices.vue')},
     {path: '/GetProperties/Geofences', name: 'GetPropertiesGeofences', component: () => import('./views/Properties/GetPropertiesGeofences.vue')},
     {path: '/GetProperties/Drivers', name: 'GetPropertiesDrivers', component: () => import('./views/Properties/GetPropertiesDrivers.vue')},
+
+    {path: '/GetOnlineInfo', name: 'GetOnlineInfo', component: () => import('./views/GetInfo/GetOnlineInfo.vue')},
+    {path: '/GetTrips', name: 'GetTrips', component: () => import('./views/GetInfo/GetTrips.vue')},
   ]
 });

@@ -3,6 +3,7 @@ import {ExternalSettings, IDataStore, IElementDataStore, store} from './main';
 import {IExternalSettings} from "@/components/IExternalSettings";
 import {IConvertedProperty, IEnumDevicesResult, IEnumDriversResult, IEnumGeofencesResult, IEnumImplementsResult, IGetPropertiesResult, ServiceConnector} from "@/components/ServiceConnector";
 import {Store} from "vuex";
+import moment from "moment";
 
 export class VueEx extends Vue {
     public getSettings(): IExternalSettings {
@@ -16,8 +17,7 @@ export class VueEx extends Vue {
 
     store:Store<IDataStore> = store;
     protected connector: ServiceConnector = new ServiceConnector(ExternalSettings.Urls.Service, ExternalSettings.Token, "APIExamples", ExternalSettings.Organization.UID);
-    // protected FMT_FROM: string = "DD.MM.YYYY HH:mm";
-    // protected FMT_TO: string = "YYYYMMDD-HHmm";
+    protected FMT_SERVICE: string = "YYYYMMDD-HHmm";
 
     public Content: string = "";
     public Items: any[] = [];
@@ -125,5 +125,9 @@ export class VueEx extends Vue {
                     });
                 return r;
             });
+    }
+
+    dateFormatter(d?:Date): string {
+        return d ? moment(d).format("DD.MM.YYYY HH:mm") : "";
     }
 }
