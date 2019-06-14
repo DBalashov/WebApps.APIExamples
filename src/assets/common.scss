@@ -1,0 +1,83 @@
+@charset "UTF-8";
+@import 'fonts';
+
+html, body {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 12pt;
+  margin:0;
+  padding:0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#app-root {
+  overflow-x: hidden;
+  min-height: 600px;
+  padding-top: 1em;
+  overflow-y: auto;
+  padding-bottom: 2rem;
+}
+
+body {
+  margin-top:56px;
+}
+
+pre {
+  line-height: 1rem;
+  padding:0.5rem;
+}
+
+section.tab-content {
+  padding: 0.2rem 0 !important;
+}
+
+.b-tabs {
+  margin-bottom: 0 !important;
+}
+
+table.items {
+  font-size: 0.9rem;
+  border:1px solid silver;
+  margin-bottom: 0.5rem;
+  width:100%;
+
+  td {
+    border-bottom: 1px solid silver;
+    padding:0 1rem 0 0.3rem
+
+  }
+
+  th {
+    border-bottom: 1px solid silver;
+    padding:0 1rem 0 0.3rem;
+    background-color:#7957d5;
+    color:white;
+  }
+
+  th.uid {
+    width:17rem;
+  }
+
+  th.serial {
+    width:6rem;
+  }
+
+  th.prop {
+    width:4rem;
+  }
+}
+
+div.items {
+  font-size:0.9rem;
+  line-height: 1rem;
+
+  div.child {
+    padding-left:1rem
+  }
+}
+
+pre.items {
+  font-size: 0.8rem;
+  line-height: 0.9rem;
+  background-color: unset;
+}

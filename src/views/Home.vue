@@ -1,18 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="columns">
+    <div class="column is-offset-2 is-8">
+      window["external-settings"] = <pre v-html="JSON.stringify(getSettings(), null, '  ')"></pre>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import {ExternalSettings} from '@/main';
+import {VueEx} from "@/VueEx";
 
-@Component({
-  components: {
-    HelloWorld,
-  },
-})
-export default class Home extends Vue {}
+@Component
+export default class HomeView extends VueEx {
+
+}
 </script>
