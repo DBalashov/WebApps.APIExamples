@@ -20,7 +20,7 @@ $.post("{{getSettings().Urls.Service}}/EnumGeoFences",
         <b-tab-item label="ServiceConnector">
           <div class="example">
 <pre>
-this.connector.EnumGeoFences().done((r: IEnumGeofencesResult) => {
+this.connector.EnumGeoFences().then((r: IEnumGeofencesResult) => {
     // r.Items,
     // r.Groups
 })
@@ -94,7 +94,7 @@ this.connector.EnumGeoFences().done((r: IEnumGeofencesResult) => {
 
 <script lang="ts">
   import {Component} from 'vue-property-decorator';
-  import {EnumBase} from "@/views/EnumBase";
+  import {EnumBase} from "@/views/Enum/EnumBase";
   import {store} from "@/main";
 
   @Component

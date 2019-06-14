@@ -14,15 +14,13 @@ export class VueEx extends Vue {
         return s1.substring(0,8)+"........"+s1.substring(s1.length-8, s1.length);
     }
 
-
-    ExternalSettings = ExternalSettings;
     store:Store<IDataStore> = store;
     protected connector: ServiceConnector = new ServiceConnector(ExternalSettings.Urls.Service, ExternalSettings.Token, "APIExamples", ExternalSettings.Organization.UID);
-    protected FMT_FROM: string = "DD.MM.YYYY HH:mm";
-    protected FMT_TO: string = "YYYYMMDD-HHmm";
+    // protected FMT_FROM: string = "DD.MM.YYYY HH:mm";
+    // protected FMT_TO: string = "YYYYMMDD-HHmm";
 
-    public Content:string="";
-    public Items:any[] = [];
+    public Content: string = "";
+    public Items: any[] = [];
 
     getChecked(ds:IElementDataStore) {
         return ds.Checked

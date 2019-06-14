@@ -81,3 +81,14 @@ pre.items {
   line-height: 0.9rem;
   background-color: unset;
 }
+
+.example pre {
+  overflow-wrap: normal;
+  white-space: pre-wrap;
+}
+
+.items-list {
+  max-height: 15rem;
+  overflow-y:auto;
+  font-size:0.9rem;
+}

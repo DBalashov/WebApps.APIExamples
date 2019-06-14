@@ -20,7 +20,7 @@ $.post("{{getSettings().Urls.Service}}/EnumImplements",
         <b-tab-item label="ServiceConnector">
           <div class="example">
 <pre>
-this.connector.EnumImplements().done((r: IEnumImplementsResult) => {
+this.connector.EnumImplements().then((r: IEnumImplementsResult) => {
     // r.Items,
     // r.Groups
 })
@@ -94,7 +94,7 @@ this.connector.EnumImplements().done((r: IEnumImplementsResult) => {
 
 <script lang="ts">
   import {Component} from 'vue-property-decorator';
-  import {EnumBase} from "@/views/EnumBase";
+  import {EnumBase} from "@/views/Enum/EnumBase";
   import {store} from "@/main";
 
   @Component

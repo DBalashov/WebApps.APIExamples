@@ -8,9 +8,13 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {path: '/', name: 'home', component: () => import('./views/Home.vue')},
-    {path: '/Enum/Devices', name: 'EnumDevices', component: () => import('./views/EnumDevices.vue')},
-    {path: '/Enum/Geofences', name: 'EnumGeofences', component: () => import('./views/EnumGeofences.vue')},
-    {path: '/Enum/Implements', name: 'EnumImplements', component: () => import('./views/EnumImplements.vue')},
-    {path: '/Enum/Drivers', name: 'EnumDrivers', component: () => import('./views/EnumDrivers.vue')},
+    {path: '/Enum/Devices', name: 'EnumDevices', component: () => import('./views/Enum/EnumDevices.vue')},
+    {path: '/Enum/Geofences', name: 'EnumGeofences', component: () => import('./views/Enum/EnumGeofences.vue')},
+    {path: '/Enum/Drivers', name: 'EnumDrivers', component: () => import('./views/Enum/EnumDrivers.vue')},
+    {path: '/Enum/Implements', name: 'EnumImplements', component: () => import('./views/Enum/EnumImplements.vue')},
+
+    {path: '/GetProperties/Devices', name: 'GetPropertiesDevices', component: () => import('./views/Properties/GetPropertiesDevices.vue')},
+    {path: '/GetProperties/Geofences', name: 'GetPropertiesGeofences', component: () => import('./views/Properties/GetPropertiesGeofences.vue')},
+    {path: '/GetProperties/Drivers', name: 'GetPropertiesDrivers', component: () => import('./views/Properties/GetPropertiesDrivers.vue')},
   ]
 });

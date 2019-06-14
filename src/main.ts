@@ -2,10 +2,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import App from './App.vue';
 import router from './router';
-import Menu from './components/Menu.vue';
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css';
 import './assets/common.scss';
+
+import Menu from './components/Menu.vue';
+import PropertyItems from './components/PropertyItems.vue';
+import SelectDevices from './components/SelectDevices.vue';
+import SelectGeofences from './components/SelectGeofences.vue';
+import SelectDrivers from './components/SelectDrivers.vue';
 
 import {IExternalSettings} from '@/components/IExternalSettings';
 import {IEnumCommonGroup, IEnumCommonItem} from '@/components/ServiceConnector';
@@ -13,6 +18,10 @@ import {IEnumCommonGroup, IEnumCommonItem} from '@/components/ServiceConnector';
 Vue.config.productionTip = false;
 
 Vue.component('Menu', Menu);
+Vue.component('PropertyItems', PropertyItems);
+Vue.component('SelectDevices', SelectDevices);
+Vue.component('SelectGeofences', SelectGeofences);
+Vue.component('SelectDrivers', SelectDrivers);
 Vue.use(Vuex);
 Vue.use(Buefy, { defaultIconPack: 'fas' });
 

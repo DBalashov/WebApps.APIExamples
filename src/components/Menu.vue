@@ -30,7 +30,7 @@
                         <router-link :to="ExternalSettings.Urls.Relative + '/GetProperties/Devices'" class="navbar-item">Devices</router-link>
                         <router-link :to="ExternalSettings.Urls.Relative + '/GetProperties/Geofences'" class="navbar-item">Geofences</router-link>
                         <router-link :to="ExternalSettings.Urls.Relative + '/GetProperties/Drivers'" class="navbar-item">Drivers</router-link>
-                        <router-link :to="ExternalSettings.Urls.Relative + '/GetProperties/Implements'" class="navbar-item">Implements</router-link>
+<!--                        <router-link :to="ExternalSettings.Urls.Relative + '/GetProperties/Implements'" class="navbar-item">Implements</router-link>-->
                     </div>
                 </div>
 
