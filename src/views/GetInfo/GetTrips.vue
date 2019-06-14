@@ -66,14 +66,20 @@ this.connector.GetOnlineInfo(
                         <tr>
                             <th class="uid">ID</th>
                             <th>Name - VehicleRegNumber (Serial)</th>
-                            <th>Trip start / end</th>
+                            <th>Range start / end</th>
                             <th>LastCoords / LastData</th>
-<!--                            <th style="width:15em">Speed/Course</th>-->
                             <th style="width:11em">LastPosition</th>
                             <th style="width:6em">Final data</th>
                         </tr>
-                        <tr v-for="o in Items">
-                            <td>{{o.ID}}</td>
+                        <tbody v-for="o in Items">
+                        <tr>
+                            <td>
+                                <div>{{o.ID}}</div>
+                                <div>
+                                    <a v-if="o.Trips && o.Trips.length" @click="o.__open = !o.__open">Trips: {{o.Trips.length}}</a>
+                                    <div v-else style="color:silver;">No trips</div>
+                                </div>
+                            </td>
                             <td>{{o.Name}} - {{o.VRN}} ({{o.Serial}})</td>
                             <td>
                                 <div>{{o.SD}}</div>
@@ -83,10 +89,76 @@ this.connector.GetOnlineInfo(
                                 <div>{{o.LastCoords}}</div>
                                 <div>{{o.LastData}}</div>
                             </td>
-<!--                            <td>Speed={{(o.Speed || 0).toFixed(2)}} km/h, Course={{(o.Course || 0).toFixed(1)}}</td>-->
                             <td>{{o.LastPosition?o.LastPosition.Lat.toFixed(7) + " / " + o.LastPosition.Lng.toFixed(7):""}}</td>
-                            <td class="c"><a href="javascript:void(0)" @click="FinalData=o.Final">show</a></td>
+                            <td><a href="javascript:void(0)" @click="FinalData=o.Final">show final</a></td>
                         </tr>
+                        <tr v-if="o.__open">
+                            <td colspan="6" style="padding:0 0 0 1rem;">
+                                <table class="items" style="margin-bottom:0.5rem">
+                                    <tr>
+                                        <th>Trip index</th>
+                                        <th>Trip start / end</th>
+                                        <th>Point start / end</th>
+                                        <th style="width:6rem"></th>
+                                    </tr>
+                                    <tbody v-for="trip in o.Trips">
+                                    <tr>
+                                        <td>{{trip.Index}}</td>
+                                        <td>
+                                            <div>{{trip.SD}}</div>
+                                            <div>{{trip.ED}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{trip.PointStart ? trip.PointStart.Lat.toFixed(7) + " / " + trip.PointStart.Lng.toFixed(7):""}}</div>
+                                            <div>{{trip.PointEnd ? trip.PointEnd.Lat.toFixed(7) + " / " + trip.PointEnd.Lng.toFixed(7):""}}</div>
+                                        </td>
+                                        <td>
+                                            <a>show total</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <table v-for="stage in trip.Stages" class="items">
+                                                <tr>
+                                                    <th colspan="7">
+                                                        {{stage.Name}}<span v-if="stage.Alias"> / {{stage.Alias}}</span>
+                                                        <div style="float:right">Trip #{{trip.Index}}</div>
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="width:3rem"></th>
+                                                    <th style="width:9rem">Start date/time</th>
+                                                    <th style="width:9rem">End date/time</th>
+                                                    <th style="width:5rem">Status</th>
+                                                    <th style="width:20rem">Status ID</th>
+                                                    <th>Status caption</th>
+                                                    <th style="width:6rem"></th>
+                                                </tr>
+                                                <tbody>
+                                                <tr v-for="it in stage.Items">
+                                                    <td>{{it.Index}}</td>
+                                                    <td>{{it.SD}}</td>
+                                                    <td>{{it.ED}}</td>
+                                                    <td>{{it.Status}}</td>
+                                                    <td>{{it.StatusID}}</td>
+                                                    <td>{{it.Caption}}</td>
+                                                    <td><a>show values</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6" style="color:silver">
+                                                        {{stage.Name}}<span v-if="stage.Alias"> / {{stage.Alias}}</span>
+                                                    </td>
+                                                    <td><a>show total</a></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
                     </table>
                 </b-tab-item>
                 <b-tab-item label="Result as JSON">
@@ -100,7 +172,7 @@ this.connector.GetOnlineInfo(
 <script lang="ts">
     import {store} from "@/main";
     import {Component} from 'vue-property-decorator';
-    import {ITripResult} from "@/components/ServiceConnector";
+    import {ITripItem, ITripResult} from "@/components/ServiceConnector";
     import {VueEx} from "@/VueEx";
     import moment from "moment";
 
@@ -113,9 +185,12 @@ this.connector.GetOnlineInfo(
         tripParams: string = "MoveDuration,TotalDuration,TotalDistance";
 
         execute() {
-            this.connector.GetTrips(this.getCheckedIDs(store.state.Devices), this.SD, this.ED, this.tripSplitterIndex, this.tripParams ? this.tripParams.split(','):[])
+            this.connector.GetTrips(this.getCheckedIDs(store.state.Devices), this.SD, this.ED, this.tripSplitterIndex, this.tripParams ? this.tripParams.split(',') : [])
                 .then((r: ITripResult[]) => {
                     this.Content = JSON.stringify(r, null, "  ");
+
+                    r.forEach(tripResult => (<any> tripResult)["__open"] = false);
+
                     this.Items = r;
                 });
         }
